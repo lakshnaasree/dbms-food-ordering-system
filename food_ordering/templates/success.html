@@ -1,0 +1,117 @@
+{% extends "base.html" %}
+{% block content %}
+
+<!-- 🎊 SUCCESS CARD -->
+<div class="success-card">
+
+    <h1 class="title">🎉 Order Placed Successfully!</h1>
+
+    <p class="order-id">🧾 Order ID: <b>{{ order_id }}</b></p>
+
+    <!-- 🚚 Buttons -->
+    <div class="btn-group">
+        <a href="/delivery/{{order_id}}" class="btn">🚚 Track Order</a>
+        <a href="/bill/{{order_id}}" class="btn">🧾 Download Bill</a>
+    </div>
+
+    <!-- 🍔 Quote -->
+    <h3 id="foodQuote" class="quote"></h3>
+
+</div>
+
+<!-- 🎊 Confetti Library -->
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+<style>
+/* 🎨 Card */
+.success-card {
+    text-align: center;
+    padding: 40px;
+    margin-top: 20px;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0px 10px 25px rgba(0,0,0,0.15);
+
+    /* ✨ fade-in animation */
+    animation: fadeIn 1s ease-in-out;
+}
+
+/* 🟢 Title */
+.title {
+    color: green;
+    animation: pop 1s ease-in-out;
+}
+
+/* 📦 Order ID */
+.order-id {
+    font-size: 18px;
+}
+
+/* 🔘 Buttons */
+.btn-group {
+    margin-top: 20px;
+}
+
+/* 🍔 Quote */
+.quote {
+    margin-top: 30px;
+    color: green;
+    font-size: 20px;
+    animation: fadeIn 2s ease-in;
+}
+
+/* 🎬 Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pop {
+    0% { transform: scale(0.5); }
+    100% { transform: scale(1); }
+}
+</style>
+
+<script>
+/* 🍔 Quotes */
+const quotes = [
+    "🍔 Good food = Good mood 😍",
+    "🍕 Happiness is a hot pizza box!",
+    "🍟 You just ordered happiness on a plate!",
+    "🍰 Life is short, eat dessert first 🎂",
+    "🥗 Healthy food, happy life!",
+    "🍜 Your meal is being prepared with love 🎂",
+    "🍗 Tasty food is the real reward of success 😋",
+    "🍩 Every bite brings joy to your journey!"
+];
+
+/* Show random quote */
+document.getElementById("foodQuote").innerText =
+    quotes[Math.floor(Math.random() * quotes.length)];
+
+/* 🎊 SAFE CONFETTI (fixed) */
+function startConfetti() {
+    let duration = 3000;
+    let end = Date.now() + duration;
+
+    (function frame() {
+        confetti({
+            particleCount: 8,
+            spread: 100,
+            startVelocity: 30,
+            origin: { y: 0.6 }
+        });
+
+        if (Date.now() < end) {
+            requestAnimationFrame(frame);
+        }
+    })();
+}
+
+/* run after page load */
+window.onload = function () {
+    startConfetti();
+};
+</script>
+
+{% endblock %}

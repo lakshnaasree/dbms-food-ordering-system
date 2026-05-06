@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2>💳 Payment</h2>
+
+<div class="card">
+<form method="POST" action="/place_order">
+
+<input name="name" placeholder="👤 Name"><br><br>
+<input name="account" placeholder="🏦 Account"><br><br>
+<input name="upi" placeholder="📞UPI"><br><br>
+
+<button class="btn">Pay Now 💵 </button>
+
+</form>
+</div>
+
+{% endblock %}

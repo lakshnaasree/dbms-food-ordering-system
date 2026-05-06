@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>🍔 FoodFlow</title>
+
+    <!-- ✅ CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <!-- 🎨 Basic Internal Styling (Navbar improved) -->
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #a74077;
+        }
+
+        /* 🔥 Navbar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(90deg, #96115e, #96115e);
+            padding: 15px 25px;
+            color: white;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        .navbar h2 {
+            margin: 0;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+            font-weight: bold;
+            padding: 8px 12px;
+            border-radius: 8px;
+            transition: 0.3s;
+        }
+
+        .navbar a:hover {
+            background: white;
+            color: #3f2a6a;
+        }
+
+        /* 📦 Content box */
+        .container {
+            padding: 20px;
+            min-height: 80vh;
+        }
+
+        /* 🔘 Buttons (global) */
+        .btn {
+            background: #ab496b;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 10px;
+            text-decoration: none;
+            display: inline-block;
+            margin: 5px;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background: #d62828;
+            transform: scale(1.05);
+        }
+    </style>
+
+    <!-- 🔔 Notification Permission -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function(){
+            if (Notification.permission !== "granted") {
+                Notification.requestPermission();
+            }
+        });
+
+        function notify(msg){
+            if(Notification.permission === "granted"){
+                new Notification(msg);
+            }
+        }
+    </script>
+
+</head>
+
+<body>
+
+<!-- 🔥 NAVBAR -->
+<div class="navbar">
+    <h2>🍔 FoodFlow</h2>
+
+    <div>
+        <a href="/dashboard">🏠 Home</a>
+        <a href="/cart">🛒 Cart</a>
+        <a href="/history">📜 History</a>
+        <a href="/admin">📊 Admin</a>
+        <a href="/logout">🚪 Logout</a>
+    </div>
+</div>
+
+<!-- 📦 CONTENT -->
+<div class="container">
+    {% block content %}{% endblock %}
+</div>
+
+</body>
+</html>

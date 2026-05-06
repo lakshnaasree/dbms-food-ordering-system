@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2 class="cart-title">🛒 Your Cart</h2>
+
+<div class="cart-page">
+
+    <!-- LEFT SIDE: ITEMS -->
+    <div class="cart-items">
+
+        {% for i in cart %}
+        <div class="cart-card">
+
+            <!-- 🍔 IMAGE -->
+            <img class="cart-img"
+                 src="{% if 'burger' in i.name|lower %}
+                       https://images.unsplash.com/photo-1550547660-d9450f859349
+                     {% elif 'pizza' in i.name|lower %}
+                        {{ url_for('static', filename='images/pizza.jpg') }}
+                     {% elif 'salad' in i.name|lower %}
+                        {{ url_for('static', filename='images/salad.jpg') }}
+                     {% elif 'ice' in i.name|lower %}
+                        {{ url_for('static', filename='images/icecream.jpg') }}
+                     {% elif 'juice' in i.name|lower %}
+                        {{ url_for('static', filename='images/juice.jpg') }}
+                     {% elif 'cake' in i.name|lower %}
+                        {{ url_for('static', filename='images/cake.jpg') }}
+                     {% else %}
+                        {{ url_for('static', filename='images/default.jpg') }}
+                     {% endif %}">
+
+            <!-- DETAILS -->
+            <div class="cart-info">
+                <h3>🍽️ {{ i.name }}</h3>
+                <p>📦 Qty: {{ i.qty }}</p>
+                <p>💰 Price: ₹{{ i.price }}</p>
+            </div>
+
+            <!-- TOTAL -->
+            <div class="cart-total-item">
+                ₹{{ i.price * i.qty }}
+            </div>
+
+        </div>
+        {% endfor %}
+
+    </div>
+
+    <!-- RIGHT SIDE: BILL -->
+    <div class="cart-summary">
+
+        <h3>🧾 Bill Summary</h3>
+
+        <div class="summary-line">
+            <span>🍔 Items Total</span>
+            <span>₹{{ total }}</span>
+        </div>
+
+        <div class="summary-line">
+            <span>🚚 Delivery</span>
+            <span style="color:green;">FREE</span>
+        </div>
+
+        <hr>
+
+        <h2>💳 Grand Total: ₹{{ total }}</h2>
+
+        <a href="/payment" class="pay-btn">⚡ Pay Now</a>
+
+        <p class="note">🎉 Fast delivery guaranteed!</p>
+
+    </div>
+
+</div>
+
+{% endblock %}

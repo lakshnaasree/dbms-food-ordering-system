@@ -1,0 +1,155 @@
+{% extends "base.html" %}
+{% block content %}
+
+<style>
+/* 🌈 Background */
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #ff4d6d, #ff8fa3, #ffb3c1);
+    overflow: hidden;
+}
+
+/* 🌟 Wrapper */
+.login-wrapper {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+/* 🍔 Floating emojis */
+.float-food {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    font-size: 28px;
+    opacity: 0.25;
+    animation: floatMove 10s linear infinite;
+    white-space: nowrap;
+}
+
+@keyframes floatMove {
+    0% { transform: translateY(100vh) rotate(0deg); }
+    100% { transform: translateY(-100vh) rotate(360deg); }
+}
+
+/*Login Card */
+.login-card {
+    width: 360px;
+    padding: 30px;
+    border-radius: 25px;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(15px);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+    text-align: center;
+    color: white;
+    animation: pop 0.8s ease;
+}
+
+@keyframes pop {
+    from { transform: scale(0.7); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+/* 🍕 Title */
+.login-card h1 {
+    margin-bottom: 10px;
+    font-size: 28px;
+}
+
+/* 💬 Subtitle */
+.subtitle {
+    font-size: 14px;
+    opacity: 0.9;
+    margin-bottom: 20px;
+}
+
+/*  Input */
+.input-box {
+    background: rgb(173, 93, 93);
+    border-radius: 12px;
+    padding: 10px;
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 15px;
+}
+
+.input-box input {
+    border: none;
+    outline: none;
+    flex: 1;
+    padding: 8px;
+    font-size: 14px;
+}
+
+/* 🚀 Button */
+.login-btn {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 12px;
+    background: linear-gradient(45deg, #ff4d9a, #ff4d9a);
+    color: rgb(178, 39, 148);
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.login-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 20px rgba(255,0,80,0.5);
+}
+
+/* 🍟 Footer */
+.footer-text {
+    margin-top: 15px;
+    font-size: 12px;
+    opacity: 0.8;
+}
+</style>
+
+<div class="login-wrapper">
+
+    <!-- 🍕 Floating Food -->
+    <div class="float-food">
+        🍔 
+        🍕 
+        🍟 🥤
+        🍩 🍰
+        🥪 🍗 
+        🍿 🍜 
+        🍛 🍦 
+        🍫
+    </div>
+
+    <!-- 🍫 Login Card -->
+    <div class="login-card">
+
+        <h1>🍕 FoodFlow Login 🍕</h1>
+
+        <p class="subtitle">
+            Welcome back foodie! Hungry? Let’s order something delicious 🍔
+        </p>
+
+        <form method="POST">
+
+            <div class="input-box">
+                📞 
+                <input name="phone" 
+                placeholder="Enter mobile number"> 
+            </div>
+
+            <button class="login-btn">🚀 Login</button>
+
+        </form>
+        <p class="footer-text">🍟 Eat • Repeat • Enjoy 🚀</p>
+
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+{% block content %}
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #fff0f3, #ffe5ec, #ffd6e0);
+}
+
+/* Title */
+h2 {
+    text-align: center;
+    margin: 25px 0;
+    color: #d6336c;
+    font-size: 30px;
+}
+
+/* Grid */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+/* Card */
+.card {
+    background: white;
+    border-radius: 20px;
+    text-decoration: none;
+    color: #333;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    transition: 0.3s;
+    position: relative;
+    overflow: hidden;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 35px rgba(255, 0, 80, 0.25);
+}
+
+/* Emoji logo */
+.logo-emoji {
+    font-size: 55px;
+    display: inline-block;
+    margin-bottom: 10px;
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.2));
+}
+
+/* Name */
+.card h3 {
+    margin: 10px 0 0;
+    font-size: 18px;
+    color: #222;
+}
+
+/* Glow animation */
+.card::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: -100%;
+    background: linear-gradient(120deg, transparent, rgba(255,77,109,0.2), transparent);
+    transition: 0.6s;
+}
+
+.card:hover::before {
+    left: 100%;
+}
+</style>
+
+<h2>🍽️ Choose Your Favourite Restaurant 🏪</h2>
+
+<div class="grid">
+
+{% for r in restaurants %}
+
+    <a href="/menu/{{ r.name | urlencode }}" class="card">
+
+        <!-- 🍴 EMOJI LOGO -->
+        <div class="logo-emoji">🍽️🏪</div>
+
+        <h3>🏪 {{ r.name }}</h3>
+
+    </a>
+
+{% endfor %}
+
+</div>
+
+{% endblock %}

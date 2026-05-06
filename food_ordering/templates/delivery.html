@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2>🚚 Delivery Tracking</h2>
+
+<!-- 📍 ADDRESS INPUT -->
+<div style="text-align:center;margin-bottom:20px;">
+    <input type="text" id="addressInput" placeholder="📍 Enter Delivery Address"
+           style="padding:10px;width:60%;border-radius:10px;border:1px solid #ea6f6f;">
+    <button onclick="saveAddress()" style="padding:10px 15px;border:none;background:rgb(188, 50, 85);color:white;border-radius:10px;">
+        Save Address
+    </button>
+</div>
+
+<!-- 📍 SHOW ADDRESS -->
+<h3 id="addressDisplay" style="text-align:center;color:#555;"></h3>
+
+<!-- 🚚 TRACK -->
+<div style="width:80%;margin:auto;height:100px;position:relative;">
+    <div style="background:#e16262;height:5px;margin-top:50px;"></div>
+    <div id="truck" style="position:absolute;font-size:40px;">🚚</div>
+</div>
+
+<h3 id="status">Preparing...</h3>
+
+<script>
+let t=document.getElementById("truck");
+let s=document.getElementById("status");
+let addressBox=document.getElementById("addressDisplay");
+
+// Load saved address
+window.onload = function(){
+    let saved = localStorage.getItem("address");
+    if(saved){
+        addressBox.innerText = "📍 Delivering to: " + saved;
+    }
+}
+
+// Save address
+function saveAddress(){
+    let addr = document.getElementById("addressInput").value;
+    if(addr.trim() === ""){
+        alert("Please enter address!");
+        return;
+    }
+    localStorage.setItem("address", addr);
+    addressBox.innerText = "📍 Delivering to: " + addr;
+}
+
+// 🚚 DELIVERY ANIMATION
+let steps=["0%","30%","60%","90%"];
+let texts=["📦 Confirmed","🍳 Preparing","🚚 On the way","🏠 Delivered"];
+
+let i=0;
+function move(){
+    if(i<steps.length){
+        t.style.left=steps[i];
+        s.innerText=texts[i];
+        i++;
+        setTimeout(move,2000);
+    }
+}
+move();
+</script>
+
+{% endblock %}

@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h2>🧾 Your Bill Summary 💵 🍹</h2>
+
+<p>Order ID: {{order.id}}</p>
+<p>Total Paid: ₹{{order.total}}</p>
+<p>Status: {{order.status}}</p>
+
+{% endblock %}
